@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #555;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  max-width: 700px; }
+
+.header {
+  text-align: center; }
+  .header h3 {
+    padding: 15px 0;
+    margin: 0;
+    background-color: darkgrey;
+    color: white; }
+  .header img {
+    align: center; }
+
+.subheader {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 5px 5px;
+  text-align: center;
+  background-color: lightgrey; }
+  .subheader span {
+    font-weight: bold; }
+  .subheader .arrows {
+    width: 25%;
+    padding: 0px 5px;
+    font-size: 120%; }
+    .subheader .arrows:hover {
+      cursor: pointer; }
+  .subheader #fromto {
+    width: 50%;
+    line-height: 30px; }
+  .subheader .future {
+    color: #921818; }
+  .subheader .past {
+    color: #888888;
+    font-style: italic; }
+
+.instruction {
+  font-style: italic;
+  padding: 0 10px;
+  margin: 10px 0; }
+
+.list-container {
+  border: 1px solid black; }
+  .list-container span {
+    font-weight: bold; }
+  .list-container .row {
+    display: flex; }
+  .list-container .tache {
+    width: 65%;
+    padding: 10px; }
+  .list-container .nom {
+    width: 35%;
+    padding: 10px; }
+
+/* Style the div that are used to open and close the accordion panel */
+.accordeon {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 2px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s; }
+
+/* Add a background color to the button if it is clicked on
+(add the .active class with JS), and when you move the mouse over it
+(hover) */
+.active, .accordeon:hover {
+  background-color: #ccc; }
+
+/* Style the accordion panel. Note: hidden by default */
+.explain {
+  padding: 20px 18px;
+  background-color: #fbfbfb;
+  display: none;
+  overflow: hidden; }
+  .explain span {
+    font-weight: bold; }
+  .explain h4 {
+    text-decoration: underline;
+    margin-top: 5px;
+    margin-bottom: 2px; }
+  .explain p {
+    margin-top: 0; }
+
+#general {
+  padding: 10px; }
+  #general span {
+    font-style: italic;
+    font-weight: bold; }
+  #general h3 {
+    text-decoration: underline; }
+
+/*# sourceMappingURL=style.css.map */

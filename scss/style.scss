@@ -1,0 +1,129 @@
+$font-stack: Helvetica, sans-serif;
+$primary-color: #555;
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  max-width: 700px;
+}
+.header {
+  text-align: center;
+  h3 {
+    padding: 15px 0;
+    margin: 0;
+    background-color: darkgrey;
+    color: white;
+  }
+  img {
+    align: center;
+  }
+}
+.subheader {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 5px 5px;
+  text-align: center;
+  background-color: lightgrey;
+  span {
+    font-weight: bold;
+  }
+  .arrows {
+    width: 25%;
+    padding: 0px 5px;
+    font-size: 120%;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  #fromto {
+    width: 50%;
+    line-height: 30px;
+  }
+  .future {
+    color: #921818;
+  }
+  .past {
+    color: lighten($primary-color, 20%);
+    font-style: italic;
+  }
+}
+.instruction {
+  font-style: italic;
+  padding: 0 10px;
+  margin: 10px 0;
+}
+.list-container {
+  border: 1px solid black;
+  span {
+    font-weight: bold;
+  }
+  .row {
+    display: flex;
+  }
+  .tache {
+    width: 65%;
+    padding: 10px;
+  }
+  .nom {
+    width: 35%;
+    padding: 10px;
+  }
+}
+
+/* Style the div that are used to open and close the accordion panel */
+.accordeon {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 2px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on
+(add the .active class with JS), and when you move the mouse over it
+(hover) */
+.active, .accordeon:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.explain {
+  padding: 20px 18px;
+  background-color: #fbfbfb;
+  display: none;
+  overflow: hidden;
+  span {
+    font-weight: bold;
+  }
+  h4 {
+    text-decoration: underline;
+    margin-top: 5px;
+    margin-bottom: 2px;
+  }
+  p {
+    margin-top: 0;
+  }
+}
+
+#general {
+  padding: 10px;
+  span {
+    font-style: italic;
+    font-weight: bold;
+  }
+  h3 {
+    text-decoration: underline;
+  }
+}
+
