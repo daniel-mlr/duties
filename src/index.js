@@ -1,13 +1,15 @@
-/* javajscript Task list scheduler for roommates */
+import { LocalDate } from 'js-joda'
 
-/* global JSJoda */
-// const LocalDate = JSJoda.LocalDate
-// const LocalDate = require("@js-joda/core").LocalDate
-import LocalDate from 'js-joda/core'
+var d = LocalDate.parse("2012-12-24")
+  .atStartOfDay()
+  .plusMonths(2)
+
+console.log('test date:', d)
 
 // global parameters
 const today = LocalDate.now()
-// const today = LocalDate.parse('2019-05-06')
+console.log('today:', today._month)
+
 const startWeekOnMonday = true // if false: week start on Sunday (untested)
 const initial_week = getWeekNo(startOfWeek(today))
 

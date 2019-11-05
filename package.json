@@ -4,6 +4,7 @@
   "description": "duties static",
   "main": "index.js",
   "scripts": {
+    "start": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,11 @@
   "homepage": "https://github.com/daniel-mlr/duties#readme",
   "dependencies": {
     "connect": "^3.7.0",
+    "js-joda": "^1.11.0",
     "serve-static": "^1.14.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }
