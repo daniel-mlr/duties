@@ -62,3 +62,6 @@ typings/
 
 # dist (construit par webpack) 
 dist/
+
+# backup temporaires
+*.bk
