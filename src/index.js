@@ -1,3 +1,5 @@
+/* nougeau fichier javascript pour roommates */
+
 import { LocalDate } from 'js-joda'
 import tasks from './Tasks'
 import roommates from './Roommates'
