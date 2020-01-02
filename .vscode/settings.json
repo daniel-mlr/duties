@@ -1,0 +1,45 @@
+{
+  "editor.fontSize": 14,
+  "editor.fontFamily": "'Liberation Mono', Consolas, 'Courier New', monospace",
+  "material-icon-theme.activeIconPack": "react",
+  "vim.useSystemClipboard": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [ "j", "j" ],
+      "after": [ "<esc>" ]
+    }, 
+    {
+      "before": [ ";", ";" ],
+      "after": [ "<esc>", "$", "A" ]
+    },
+    {
+      "before": ["<C-l>"],
+      "after": ["<C-o>", "l"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [ "q" ],
+      "commands": [ ":q" ]
+    },
+    {
+      "before":["<C-n>"],
+      "commands": [ ":nohl", ]
+    },
+  ],
+  "debug.console.fontSize": 12,
+  "markdown.preview.fontSize": 12,
+  "editor.tabSize": 2,
+  "html.format.indentHandlebars": true,
+  "emmet.triggerExpansionOnTab": true,
+  "workbench.colorTheme": "One Monokai",
+  "terminal.integrated.fontFamily": "DejaVu Sans Mono, PowerlineSymbols",
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.cache/**": true,
+    "**/public/**": true,
+    "**/node_modules/**": true,
+    "**/tmp/**": true
+
+  },
+}
