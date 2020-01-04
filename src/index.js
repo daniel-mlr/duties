@@ -2,6 +2,7 @@
 
 import { LocalDate } from 'js-joda'
 import tasks from './Tasks'
+// import tasks1 from './Tasks'
 import roommates from './Roommates'
 import './main.scss'
 
@@ -11,20 +12,6 @@ const today = LocalDate.now()
 
 const startWeekOnMonday = true // if false: week start on Sunday (untested)
 const initial_week = getWeekNo(startOfWeek(today))
-
-const wc_upstairs = [2, 3, 4]
-
-const wc_downstairs = [5, 6]
-
-const task_downstairs = [
-  {
-    name: 'downstairs',
-    short: 'Clean the washroom downstairs',
-    long: '<p>Use abrasive soap to clean the bath, the sink and the toilet bowl. Empty garbage bin. Clean the mirrors with Windex. Wash the floor if needed.</p>',
-    period: 1,
-    lag: 0
-  }
-]
 
 // ==============
 // functions
@@ -48,39 +35,72 @@ function  getWeekNo(d) {
   return week_no
 }
 
-function createAssign(week_no) {
-  // return a function to be used as callback for mapping tasks array
-  return (task) => {
-    // return the index of room (based 0) to which a task is assigned
-    // or null if that task is not assigned in the corresponding week_no
-    const w = week_no + task.lag //- 1 ? Made corrections in tasks table instead
-    const team = task.period < 1  // bool, indicating a team task
-    const unassigned = ( w % task.period )  && !team  // bool
+// function createAssign(week_no) {
+//   // return a function to be used as callback for mapping tasks array
+//   return (task) => {
+//     // return the index of room (based 0) to which a task is assigned
+//     // or null if that task is not assigned in the corresponding week_no
+//     const w = week_no + task.lag //- 1 ? Made corrections in tasks table instead
+//     const team = task.period < 1  // bool, indicating a team task
+//     const unassigned = ( w % task.period )  && !team  // bool
 
-    return unassigned ? null : w % (task.period * roommates.length) / (team ? 1 : task.period)
-  }
+//     return unassigned ? null : w % (task.period * roommates.length) / (team ? 1 : task.period)
+//   }
+// }
+
+function allot(week_no) {
+  // return a function to be used as callback for mapping tasks array
+  return (tsks) => tsks.map(tsk => { 
+    const w = week_no + tsk.lag 
+    const unassigned = (w % tsk.period) 
+    const assigned_to = tsk.concerns[w % (tsk.period * tsk.concerns.length) / tsk.period] 
+    const rmm = Array.isArray(assigned_to) 
+    ? roommates[assigned_to[0] -1] + ' and ' + roommates[assigned_to[1] -1]
+    : roommates[assigned_to - 1]
+    // return unassigned ? null : [w, tsk.lag, tsk.short, tsk.concerns.length, tsk.period, rmm] 
+    return unassigned ? null : [tsk.short, rmm, tsk.long] 
+  })
 }
 
-function formatTaskRow(room, task_ix) {
-  // call back for assignments array map.
+
+// to be removed: eliminate formating
+// function formatTaskRow(room, task_ix) {
+//   // callback for assignments array map.
+//   // Returns a formatted row of a task and the roommate assigned to it
+//   // The task long description is appened in a sibling row.
+
+//   const room_names = tasks[task_ix].period < 1 ?   // is it a team task?
+//     '<span>' + roommates[room * 2 ] + ' and ' + roommates[room * 2 + 1] + '</span>' :
+//     '<span>' + roommates[room] + '</span>'  // if not
+//   const formatted_row =
+//     '<div class="row accordeon">' +
+//       '<div class="tache">' + tasks[task_ix].short + '</div>' +
+//       '<div class="nom"> ' + room_names + '</div>' +
+//     '</div>' +
+//     '<div class="explain">' +  tasks[task_ix].long + '</div>'
+
+//   return room == null ? null : formatted_row
+// }
+
+
+function formatTaskRows(tRow) {
+  // callback for assignments array map.
   // Returns a formatted row of a task and the roommate assigned to it
   // The task long description is appened in a sibling row.
 
-  const room_names = tasks[task_ix].period < 1 ?   // is it a team task?
-    '<span>' + roommates[room * 2 ] + ' and ' + roommates[room * 2 + 1] + '</span>' :
-    '<span>' + roommates[room] + '</span>'  // if not
   const formatted_row =
     '<div class="row accordeon">' +
-      '<div class="tache">' + tasks[task_ix].short + '</div>' +
-      '<div class="nom"> ' + room_names + '</div>' +
+      '<div class="tache">' + tRow[0] + '</div>' +
+      '<div class="nom"><span>' + tRow[1] + '</span></div>' +
     '</div>' +
-    '<div class="explain">' +  tasks[task_ix].long + '</div>'
+    '<div class="explain">' + tRow[2] + '</div>'
 
-  return room == null ? null : formatted_row
+  return formatted_row
 }
 
 // generate rows for tasks table, eliminating unassigned tasks for current week
-const generateTasksRows = (week) => tasks.map(createAssign(week)).map(formatTaskRow).filter(x => x)
+// const generateTasksRows = (week) => tasks.map(createAssign(week)).map(formatTaskRow).filter(x => x)
+const generateTasksRowsArr = (week) => allot(week)(tasks).filter(x => x).map(formatTaskRows)
 
 function makeTaskList(wk_no) {
   /**
@@ -88,7 +108,8 @@ function makeTaskList(wk_no) {
    * of each tasks
    */
   var ret = '<div class="list-container">'
-  ret += generateTasksRows(wk_no).reduce((accumulator, current) => accumulator + current)
+  // ret += generateTasksRows(wk_no).reduce((accumulator, current) => accumulator + current)
+  ret += generateTasksRowsArr(wk_no).reduce((accumulator, current) => accumulator + current)
   ret += '</div>' // end div.list-container
   return ret
 }
@@ -161,22 +182,28 @@ window.onload = function() {
   refreshTasksTable(initial_week)
   setDateRangeField(initial_week)
 
+  // console.log('semaine', initial_week, allot(initial_week)(tasks))
+  // console.log('generate Tasks Rows Array: ', generateTasksRowsArr(initial_week))
+
   document.getElementById('forward').addEventListener('click', () => {
     var wk = weekCounter.increment()
     setDateRangeField(wk)
     refreshTasksTable(wk)
     setVisualWarning(wk)
+    // console.log('semaine', wk, allot(wk)(tasks))
   })
   document.getElementById('backup').addEventListener('click', () => {
     var wk = weekCounter.decrement()
     setDateRangeField(wk)
     refreshTasksTable(wk)
     setVisualWarning(wk)
+    // console.log('semaine', wk, allot(wk)(tasks))
   })
   document.getElementById('fromto').addEventListener('click', () => {
     var wk = weekCounter.reset()
     setDateRangeField(wk)
     refreshTasksTable(wk)
     setVisualWarning(wk)
+    // console.log('semaine', wk, allot(wk)(tasks))
   })
 }
