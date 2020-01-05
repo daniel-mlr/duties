@@ -76,7 +76,7 @@ export default [
   {
     name: 'wc_upstairs',
     short: 'Clean the washroom upstairs',
-    long: '<p>To be specified</p>',
+    long: '<p>Use abrasive soap to clean the bath, the sink and the toilet bowl. Empty garbage bin. Clean the mirrors with Windex. Wash the floor if needed.</p>',
     concerns: [2, 3, 4],
     period: 2,
     lag: 0
