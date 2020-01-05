@@ -5,6 +5,6 @@ export default [
   'Karen',
   'Deborah',
   'Daniel',
-  'Gabriel'
+  'Nevin'
 ]
 
