@@ -1,4 +1,4 @@
-/* nougeau fichier javascript pour roommates */
+/* duties perpetual calendar for roommates */
 
 import { LocalDate } from 'js-joda'
 import tasks from './Tasks'
@@ -7,7 +7,6 @@ import './main.scss'
 
 // global parameters
 const today = LocalDate.now()
-
 const startWeekOnMonday = true // if false: week start on Sunday (untested)
 const initial_week = getWeekNo(startOfWeek(today))
 
@@ -18,12 +17,11 @@ function startOfWeek(d) {
   // return LocalDate: beginning of the week of date in argument
   // arg: d: object of class LocalDate
   var dow = d.dayOfWeek()._ordinal
-  // return d.minusDays(dow)
   return d.minusDays(dow).minusDays(1 - startWeekOnMonday)
 }
 
 function  getWeekNo(d) {
-  // return int: week number of date d
+  // return int: the week number in which date d lies
   // arg d: obj of class LocalDate.
   let week_no = ( startOfWeek(d).toEpochDay() + 4 - startWeekOnMonday ) / 7
   if (!Number.isInteger(week_no)) {
@@ -34,7 +32,7 @@ function  getWeekNo(d) {
 }
 
 function allot(week_no) {
-  // return a function to be used as callback for mapping tasks array
+  // return a function that assign tasks to be done in week_no to each roommates
   return (tsks) => tsks.map(tsk => { 
     const w = week_no + tsk.lag  // lag to adjust staggering of rotations
     const unassigned = (w % tsk.period) // task is assigned only when modulo is 0
@@ -63,13 +61,13 @@ function formatTaskRows(tRow) {
 
 function makeTaskList(wk_no) {
   /**
-   * Return a list of assigned tasks with assignee's names and a description
-   * of each tasks
+   * Process a list of assigned tasks with assignee's names and a description
+   * of each tasks, then concatenate it and return it in a string
    */
   var ret = '<div class="list-container">'
   ret += allot(wk_no)(tasks)       // allocates tasks for this week
   .filter(x => x)                  // removes non allocated tasks
-  .map(formatTaskRows)             // format html
+  .map(formatTaskRows)             // format to html
   .reduce((acc, cur) => acc + cur) // concatenate
   ret += '</div>' // end div.list-container
   return ret
@@ -86,8 +84,10 @@ const weekCounter = (function () {
 })()
 
 function dateFormatter(d) {
+  // date formatter for the week selection bar
   return d.month()._name + '&nbsp;' + d.dayOfMonth()
 }
+
 
 // =================
 // impures functions
@@ -108,8 +108,6 @@ function addTasksListeners() {
   for (var i = 0; i < acc.length; i++) {
     acc[i].addEventListener('click', accordeonClickAction)
   }
-  // var doc = document.getElementsByClassName('accordeon')
-  // doc.addEventListener('click', accordeonClickAction)
 }
 
 function refreshTasksTable(week) {
@@ -118,6 +116,7 @@ function refreshTasksTable(week) {
 }
 
 function setDateRangeField(week) {
+  // week selection bar dates
   document.getElementById('start_of_wk').innerHTML = dateFormatter(
     LocalDate.ofEpochDay(week * 7 - 4 + startWeekOnMonday )
   )
@@ -127,6 +126,7 @@ function setDateRangeField(week) {
 }
 
 function setVisualWarning(week) {
+  // style week selection bar
   let el = document.getElementById('fromto').classList
   if (week < initial_week) {
     el.remove('future')
