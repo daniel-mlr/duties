@@ -5,13 +5,9 @@
     "jest": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "gatsby-standard"
+    "eslint:recommended"
     ],
-
   "parser": "babel-eslint",
-
   "parserOptions": {
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
