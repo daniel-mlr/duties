@@ -7,7 +7,6 @@
 // period:   number of weeks between task repetition. 
 // lag:      to adjust the staggering of the tasks
 
-// tasks = [
 export default [
   {
     short: 'Taking out garbages',

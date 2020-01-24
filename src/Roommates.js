@@ -3,7 +3,7 @@ export default [
   'Paulina and Maui',
   'Alessio',
   'Karen',
-  'Deborah',
+  'Carlos',
   'Daniel',
   'Nevin'
 ]

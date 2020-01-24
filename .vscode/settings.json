@@ -7,7 +7,7 @@
     {
       "before": [ "j", "j" ],
       "after": [ "<esc>" ]
-    }, 
+    },
     {
       "before": [ ";", ";" ],
       "after": [ "<esc>", "$", "A" ]
@@ -24,22 +24,21 @@
     },
     {
       "before":["<C-n>"],
-      "commands": [ ":nohl", ]
-    },
+      "commands": [ ":nohl"]
+    }
   ],
   "debug.console.fontSize": 12,
   "markdown.preview.fontSize": 12,
   "editor.tabSize": 2,
-  "html.format.indentHandlebars": true,
   "emmet.triggerExpansionOnTab": true,
   "workbench.colorTheme": "One Monokai",
   "terminal.integrated.fontFamily": "DejaVu Sans Mono, PowerlineSymbols",
   "files.watcherExclude": {
-    "**/.git/objects/**": true,
     "**/.cache/**": true,
-    "**/public/**": true,
+    "**/.git/objects/**": true,
     "**/node_modules/**": true,
+    "**/public/**": true,
     "**/tmp/**": true
-
   },
+  "html.format.indentHandlebars": true
 }
