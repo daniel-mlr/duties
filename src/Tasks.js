@@ -58,20 +58,20 @@ export default [
     period: 2,
     lag: 13
   },
-  {
-    short: 'Clean the washroom downstairs',
-    long: '<p>Use abrasive soap to clean the bath, the sink and the toilet bowl. Empty garbage bin. Clean the mirrors with Windex. Wash the floor if needed.</p>',
-    concerns: [5, 6],
-    period: 2,
-    lag: 0
-  },
-  {
-    short: 'Clean the washroom upstairs',
-    long: '<p>Use abrasive soap to clean the bath, the sink and the toilet bowl. Empty garbage bin. Clean the mirrors with Windex. Wash the floor if needed.</p>',
-    concerns: [2, 3, 4],
-    period: 2,
-    lag: 0
-  },
+ // {
+ //   short: 'Clean the washroom downstairs',
+ //   long: '<p>Use abrasive soap to clean the bath, the sink and the toilet bowl. Empty garbage bin. Clean the mirrors with Windex. Wash the floor if needed.</p>',
+ //   concerns: [5, 6],
+ //   period: 2,
+ //   lag: 0
+ // },
+ // {
+ //   short: 'Clean the washroom upstairs',
+ //   long: '<p>Use abrasive soap to clean the bath, the sink and the toilet bowl. Empty garbage bin. Clean the mirrors with Windex. Wash the floor if needed.</p>',
+ //   concerns: [2, 3, 4],
+ //   period: 2,
+ //   lag: 0
+ // },
   {
     short: 'Sweep hallway floor upstairs',
     long: '<p>Sweep floor upstairs. If needed, mop it.</p>',
