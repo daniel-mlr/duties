@@ -18,7 +18,8 @@ export default [
     <h4>Recycling boxes</h4>\
     <p>Take the recycling boxes (blue and gray) and all the paper bags down the street. Keep a distance of at least 1 meter away from the wheeled containers. The recycling boxes and bags <strong>must be taken down the night before, or before 7:00am on the date specified at</strong> <a href="http://vancouver.ca/home-property-development/garbage-and-recycling-collection-schedules.aspx"> the Vancouver Collection Schedule Website</a> (you <strong>must</strong> subscribe to it and/or download the app). Read carefully the instructions posted on the walls and sort out if necessary: the city won\'t collect anything that has misclassified items, or if too full or carboards lay outside the bags. (Needless to say, avoid misclassification when it is not your turn!).\
     </p> <p>Two rooms are assigned to this task so to make absolutely sure it\'s done every week.</p>',
-    concerns: [[1,2], [3,4], [5,6]],
+    // concerns: [[1,2], [3,4], [5,6]],
+    concerns: [1, 2, 3, 4, 5, 6],
     period: 1,
     lag: -1
   },
